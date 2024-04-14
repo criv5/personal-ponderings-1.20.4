@@ -13,19 +13,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayNetworkHandler.class)
-    public class CheckDamageMixin {
+    public class EntityDamageMixin {
 
         @Shadow
         private ClientWorld world;
 
         @Inject(method = "onEntityDamage", at = @At("HEAD"))
         public void onEntityDamage(EntityDamageS2CPacket packet, CallbackInfo ci) {
-
             MinecraftClient client = MinecraftClient.getInstance();
             Entity damagedEntity = world.getEntityById(packet.entityId());
-            if (damagedEntity != null && damagedEntity == MinecraftClient.getInstance().player) {
-                Entity sourceEntity = world.getEntityById(packet.sourceCauseId());
-                    //client.player.sendMessage(Text.of("You were damaged by " + sourceEntity + " let me check for damage type maybe its " + packet.sourceCauseId()), false);
+            Entity sourceEntity = world.getEntityById(packet.sourceCauseId());
+            if (damagedEntity != null && damagedEntity == MinecraftClient.getInstance().player && sourceEntity != null) {
+                    client.player.sendMessage(Text.of("You were damaged by " + sourceEntity + " let me check for damage type maybe its "), false);
             }
         }
     }
