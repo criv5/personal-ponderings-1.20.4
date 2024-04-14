@@ -1,5 +1,6 @@
 package criv.personalponderings.mixin.client;
 
+import criv.personalponderings.SoundEvents;
 import criv.personalponderings.sound.Sounds;
 import net.minecraft.block.CactusBlock;
 import net.minecraft.block.SweetBerryBushBlock;
@@ -18,36 +19,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class HealthUpdateMixin {
 
     Float oldHealth;
+    int oldHunger;
     MinecraftClient client = MinecraftClient.getInstance();
 
     @Inject(method = "onHealthUpdate", at = @At("TAIL"))
     public void onEntityDamage(HealthUpdateS2CPacket packet, CallbackInfo ci) {
         if(client.player == null) return;
         Float newHealth = packet.getHealth();
-        if(oldHealth == null) {
-            client.player.playSound(Sounds.SPAWN, SoundCategory.MASTER, 1.5F, (float) (Math.random() * 0.2+0.9));
-            oldHealth = newHealth;
-        }
-        float difference = oldHealth-newHealth;
+        int newHunger = packet.getFood();
 
-        if(newHealth < oldHealth) {
-            client.player.sendMessage(Text.of("old: " + oldHealth + " new: " + newHealth + " DIFFERENCE: " + (difference)), false);
-            if(newHealth == 0) {
-                client.player.playSound(Sounds.DEATH, SoundCategory.MASTER, 1F, (float) (Math.random() * 0.2 + 0.9));
-                return;
-            }
-            else if (newHealth == 20) client.player.playSound(Sounds.SPAWN, SoundCategory.MASTER, 2F, (float) (Math.random() * 0.2+0.9));
-            else if (difference > 8)
-                client.player.playSound(Sounds.LARGE_HURT, SoundCategory.MASTER, 1F, (float) (Math.random() * 0.2+0.9));
-            else if (difference > 3)
-                client.player.playSound(Sounds.MEDIUM_HURT, SoundCategory.MASTER, 1F, (float) (Math.random() * 0.2+0.9));
-            else if (difference <= 3)
-                if(client.player.isOnFire())
-                    client.player.playSound(Sounds.FIRE_HURT, SoundCategory.MASTER, 1F, (float) (Math.random() * 0.2+0.9));
-                else if (client.player.getBlockStateAtPos().getBlock() instanceof SweetBerryBushBlock || client.player.getBlockStateAtPos().getBlock() instanceof CactusBlock)
-                    client.player.playSound(Sounds.POKE_HURT, SoundCategory.MASTER, 1F, (float) (Math.random() * 0.2+0.9));
-                else client.player.playSound(Sounds.SMALL_HURT, SoundCategory.MASTER, 1F, (float) (Math.random() * 0.2+0.9));
-        }
+        SoundEvents.healthUpdate(oldHealth, newHealth, client);
+        SoundEvents.hungerUpdate(oldHunger, newHunger, client);
+
         oldHealth = newHealth;
+        oldHunger = newHunger;
             }
         }

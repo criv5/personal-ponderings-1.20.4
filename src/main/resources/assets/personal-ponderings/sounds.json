@@ -72,5 +72,11 @@
       "personal-ponderings:phantom3",
       "personal-ponderings:phantom4"
     ]
+  },
+  "drown_hurt": {
+    "sounds": [
+      "personal-ponderings:drown1",
+      "personal-ponderings:drown2"
+    ]
   }
 }

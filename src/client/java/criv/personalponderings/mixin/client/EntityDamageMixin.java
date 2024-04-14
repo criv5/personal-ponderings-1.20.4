@@ -1,5 +1,6 @@
 package criv.personalponderings.mixin.client;
 
+import criv.personalponderings.SoundEvents;
 import criv.personalponderings.sound.Sounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -24,16 +25,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         @Inject(method = "onEntityDamage", at = @At("TAIL"))
         public void onEntityDamage(EntityDamageS2CPacket packet, CallbackInfo ci) {
             MinecraftClient client = MinecraftClient.getInstance();
-            Entity damagedEntity = world.getEntityById(packet.entityId());
-            Entity sourceEntity = world.getEntityById(packet.sourceCauseId());
-            if (damagedEntity != null && damagedEntity == MinecraftClient.getInstance().player && sourceEntity != null) {
-                    client.player.sendMessage(Text.of("You were damaged by " + sourceEntity), false);
-                    if(sourceEntity.getType() == EntityType.SKELETON)
-                        client.player.playSound(Sounds.SKELETON_HURT, SoundCategory.MASTER, 1.2F, (float) (Math.random() * 0.2+0.9));
-                    else if(sourceEntity.getType() == EntityType.PHANTOM)
-                        client.player.playSound(Sounds.PHANTOM_HURT, SoundCategory.MASTER, 1.8F, (float) (Math.random() * 0.2+0.9));
-                    else
-                        client.player.playSound(Sounds.MOB_HURT, SoundCategory.MASTER, 1.2F, (float) (Math.random() * 0.2+0.9));
+            Entity target = world.getEntityById(packet.entityId());
+            Entity source = world.getEntityById(packet.sourceCauseId());
+            if (target != null && source != null) {
+                SoundEvents.entityDamage(source, target, client);
             }
         }
     }

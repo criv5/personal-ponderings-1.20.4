@@ -17,6 +17,7 @@ public class Sounds {
     public static final SoundEvent MOB_HURT = registerSoundEvent("mob_hurt");
     public static final SoundEvent SKELETON_HURT = registerSoundEvent("skeleton_hurt");
     public static final SoundEvent PHANTOM_HURT = registerSoundEvent("phantom_hurt");
+    public static final SoundEvent DROWN_HURT = registerSoundEvent("drown_hurt");
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(PersonalPonderings.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
