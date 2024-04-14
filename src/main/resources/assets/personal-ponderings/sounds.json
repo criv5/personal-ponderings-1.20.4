@@ -1,0 +1,76 @@
+{
+  "small_hurt": {
+    "sounds": [
+      "personal-ponderings:ouch1",
+      "personal-ponderings:ouch2",
+      "personal-ponderings:ouch3",
+      "personal-ponderings:ow1"
+    ]
+  },
+  "medium_hurt": {
+    "sounds": [
+      "personal-ponderings:ow1",
+      "personal-ponderings:ow2"
+    ]
+  },
+  "large_hurt": {
+    "sounds": [
+      "personal-ponderings:bigow1"
+    ]
+  },
+  "fire_hurt": {
+    "sounds": [
+      "personal-ponderings:fire1",
+      "personal-ponderings:fire2",
+      "personal-ponderings:bigow1",
+      "personal-ponderings:fire3"
+    ]
+  },
+  "death": {
+    "sounds": [
+      "personal-ponderings:death1",
+      "personal-ponderings:death2",
+      "personal-ponderings:death3"
+    ]
+  },
+  "poke_hurt": {
+    "sounds": [
+      "personal-ponderings:thorny1",
+      "personal-ponderings:thorny2"
+    ]
+  },
+  "spawn": {
+    "sounds": [
+      "personal-ponderings:spawn1",
+      "personal-ponderings:spawn2",
+      "personal-ponderings:spawn3"
+    ]
+  },
+  "mob_hurt": {
+    "sounds": [
+      "personal-ponderings:bro1",
+      "personal-ponderings:stop1",
+      "personal-ponderings:stop2",
+      "personal-ponderings:stop3",
+      "personal-ponderings:fuckstop1"
+    ]
+  },
+  "skeleton_hurt": {
+    "sounds": [
+      "personal-ponderings:skeleton1",
+      "personal-ponderings:skeleton2",
+      "personal-ponderings:shooting1",
+      "personal-ponderings:shooting2",
+      "personal-ponderings:bro1",
+      "personal-ponderings:bro1"
+    ]
+  },
+  "phantom_hurt": {
+    "sounds": [
+      "personal-ponderings:phantom1",
+      "personal-ponderings:phantom2",
+      "personal-ponderings:phantom3",
+      "personal-ponderings:phantom4"
+    ]
+  }
+}

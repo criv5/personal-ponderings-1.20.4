@@ -17,7 +17,8 @@ public abstract class OtherDamageMixin extends AbstractClientPlayerEntity {
 
     @Inject(method = "damage", at = @At("HEAD"))
     public void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if(amount < 1) return;
-        this.sendMessage(Text.literal("damage and source is " + source), false);
+        if(amount > 0) {
+            this.sendMessage(Text.literal("damage and source is " + source), false);
+        }
     }
 }
