@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "criv.personalponderings.mixin.client",
+	"compatibilityLevel": "JAVA_17",
+	"client": [
+		"ExampleClientMixin",
+		"AbstractClientPlayerEntityMixin",
+		"CheckDamageMixin",
+		"CheckHealthMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
